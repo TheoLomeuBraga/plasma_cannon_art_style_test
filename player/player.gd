@@ -1,9 +1,35 @@
 extends CharacterBody3D
 class_name Player
 
+@onready var player_oc_model : PlayerOCModel =  $player_oc_model
+@onready var rotation_ref : Node3D = $rotation_ref
+
+@export_category("camera")
+@onready var camera_basis_y : Node3D = $camera_basis_y
+@onready var camera_basis_x : Node3D = $camera_basis_y/camera_basis_x
+@onready var camera : Camera3D = $camera_basis_y/camera_basis_x/SpringArm3D/Camera3D
+@export var camera_sensitivity : float = 1.0
+
+func _camera_process(delta : float) -> void:
+	camera_basis_y.global_position = global_position
+	camera_basis_x.rotation.x = clamp(camera_basis_x.rotation.x,deg_to_rad(-60.0),deg_to_rad(60.0))
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var mm : InputEventMouseMotion = event
+		camera_basis_y.rotation.y -= (mm.relative.x * camera_sensitivity) / 100.0
+		
+		camera_basis_x.rotation.x -= (mm.relative.y * camera_sensitivity) / 100.0
+	
+	if Input.is_action_pressed("hide_cursor"):
+		Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MouseMode.MOUSE_MODE_VISIBLE
+
 @export_category("floor_estate")
-@export var speed : float = 5.0
+@export var speed : float = 10.0
 @export var friction : float = 50.0
+@export var rotation_speed : float = 10.0
 
 @export_category("air_estate")
 @export var jump_velocity : float = 4.5
@@ -12,25 +38,40 @@ class_name Player
 enum Estates {AIR,FLOOR}
 var estate : Estates = Estates.AIR
 
+func rotate_charter_to_direction(delta: float,direction : Vector3) -> void:
+	var new_direction : Vector3 = -Vector3(direction.x,0.0,direction.z).normalized()
+	rotation_ref.look_at(rotation_ref.global_position + new_direction)
+	
+	player_oc_model.rotation.y = rotate_toward(player_oc_model.rotation.y,rotation_ref.rotation.y,rotation_speed * delta)
+
 func _floor_process(delta: float) -> void:
 	
+	player_oc_model.mode = player_oc_model.Modes.FLOOR
+	
 	var input_dir : Vector2 = Input.get_vector("left", "right", "up", "down")
-	var direction : Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction : Vector3 = (camera_basis_y.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	velocity.x = move_toward(velocity.x, direction.x * speed, friction * delta)
 	velocity.z = move_toward(velocity.z, direction.z * speed, friction * delta)
 	
+	player_oc_model.walk_speed = move_toward(player_oc_model.walk_speed,input_dir.length()* 2.0,delta * 5.0) 
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
+	
+	rotate_charter_to_direction(delta,direction)
 	
 	if not is_on_floor():
 		estate = Estates.AIR
 
 func _air_process(delta: float) -> void:
+	
+	player_oc_model.mode = player_oc_model.Modes.AIR
+	
 	velocity += get_gravity() * delta
 	
 	var input_dir : Vector2 = Input.get_vector("left", "right", "up", "down")
-	var direction : Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction : Vector3 = (camera_basis_y.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	velocity.x = move_toward(velocity.x, direction.x * speed, air_friction * delta)
 	velocity.z = move_toward(velocity.z, direction.z * speed, air_friction * delta)
@@ -38,7 +79,10 @@ func _air_process(delta: float) -> void:
 	if is_on_floor():
 		estate = Estates.FLOOR
 
+
 func _physics_process(delta: float) -> void:
+	
+	_camera_process(delta)
 	
 	match estate:
 		Estates.AIR:
