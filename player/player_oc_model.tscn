@@ -1,0 +1,171 @@
+[gd_scene load_steps=11 format=3 uid="uid://cwr63aj5eu6of"]
+
+[ext_resource type="PackedScene" uid="uid://nn8pa6r0gpcc" path="res://player/player_oc.glb" id="1_c2gt8"]
+[ext_resource type="AnimationLibrary" uid="uid://bf54s6a4qpao4" path="res://player/animation_lib/template_psx_charter.glb" id="2_2uvth"]
+[ext_resource type="Script" uid="uid://cblq3in5u3elu" path="res://player/player_oc_model.gd" id="2_u2reh"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2uvth"]
+animation = &"template_psx_charter/jump"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_u2reh"]
+xfade_time = 0.1
+input_0/name = "floor"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "air"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mtrva"]
+animation = &"template_psx_charter/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ssyp"]
+animation = &"template_psx_charter/walk"
+use_custom_timeline = true
+timeline_length = 1.25
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eoc1p"]
+animation = &"template_psx_charter/run"
+use_custom_timeline = true
+timeline_length = 0.75
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_l7sbk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_mtrva")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_8ssyp")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_eoc1p")
+blend_point_2/pos = 2.0
+min_space = 0.0
+max_space = 2.0
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_tanhj"]
+graph_offset = Vector2(-590.3862, 156.80334)
+nodes/walk_speed/node = SubResource("AnimationNodeBlendSpace1D_l7sbk")
+nodes/walk_speed/position = Vector2(-280, 160)
+nodes/estate/node = SubResource("AnimationNodeTransition_u2reh")
+nodes/estate/position = Vector2(60, 180)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_2uvth")
+nodes/Animation/position = Vector2(-280, 380)
+node_connections = [&"output", 0, &"estate", &"estate", 0, &"walk_speed", &"estate", 1, &"Animation"]
+
+[node name="player_oc_model" instance=ExtResource("1_c2gt8")]
+script = ExtResource("2_u2reh")
+
+[node name="GeneralSkeleton" parent="metarig" index="0"]
+bones/0/position = Vector3(0, 1.0093768, -0.05519999)
+bones/0/rotation = Quaternion(0.0011798068, 0, 0, 0.99999934)
+bones/4/rotation = Quaternion(-1.6763806e-08, 0, 0, 1)
+bones/5/rotation = Quaternion(-1.4901161e-08, 0, 0, 1)
+bones/6/rotation = Quaternion(-2.2351744e-08, 0, 0, 1)
+bones/10/rotation = Quaternion(0.07265626, 0.74262995, -0.6647098, 0.037183687)
+bones/11/rotation = Quaternion(-0.065682754, -0.7035499, -0.042095937, 0.7063506)
+bones/12/rotation = Quaternion(2.3283059e-10, 0.70710677, 2.3283059e-10, 0.70710677)
+bones/14/rotation = Quaternion(-0.07267302, 0.74262637, -0.6647112, -0.037201986)
+bones/15/rotation = Quaternion(-0.065682754, 0.7035499, 0.042095937, 0.7063506)
+bones/16/rotation = Quaternion(-7.2177504e-09, -0.70710677, 7.2177504e-09, 0.70710677)
+bones/21/rotation = Quaternion(2.4350946e-08, 0.0034034052, 0.9999943, -3.0398655e-09)
+bones/22/rotation = Quaternion(5.0321632e-17, 0.99998724, -0.0050510857, -3.8258943e-17)
+bones/23/rotation = Quaternion(-7.322891e-16, 0.70710677, -0.70710677, -2.829312e-16)
+bones/26/rotation = Quaternion(1.9501684e-08, 0.0034034052, 0.9999943, 2.8168996e-09)
+bones/27/rotation = Quaternion(5.0321632e-17, 0.99998724, -0.0050510857, -3.8258943e-17)
+bones/28/rotation = Quaternion(-1.522828e-15, 0.70710677, -0.70710677, -8.07185e-16)
+
+[node name="hair" parent="metarig/GeneralSkeleton" index="0"]
+transform = Transform3D(1, 1.892363e-16, 5.3971543e-17, 5.365248e-17, -0.5260728, 0.85043967, 1.893269e-16, -0.85043955, -0.52607274, 0, 1.940161, -0.08004889)
+
+[node name="spine_006" parent="metarig/GeneralSkeleton" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.99999696, -0.0023595027, 0, 0.0023595032, 0.99999684, 0, 1.780586, 0.026519887)
+
+[node name="spine_004" parent="metarig/GeneralSkeleton" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.9999972, -0.0023595782, 0, 0.0023595782, 0.9999972, 0, 1.6575716, -0.009870419)
+
+[node name="hand_L" parent="metarig/GeneralSkeleton" index="3"]
+transform = Transform3D(0.043118656, 0.14667004, -0.98824525, 0.0017299353, -0.9891747, -0.1467326, -0.9990685, 0.004617301, -0.042905584, 0.25606483, 1.0397959, -0.0026027374)
+
+[node name="forearm_L" parent="metarig/GeneralSkeleton" index="4"]
+transform = Transform3D(-0.98824525, 0.14667004, -0.043118656, -0.1467326, -0.9891747, -0.001729936, -0.042905584, 0.0046173004, 0.9990685, 0.23487055, 1.2987342, -0.042405777)
+
+[node name="upper_arm_L" parent="metarig/GeneralSkeleton" index="5"]
+transform = Transform3D(0.058480706, 0.10576379, -0.9926702, -0.1494895, -0.98223215, -0.11345858, -0.9870324, 0.1550289, -0.041631058, 0.1953, 1.5840077, -0.025344037)
+
+[node name="hand_R" parent="metarig/GeneralSkeleton" index="6"]
+transform = Transform3D(0.04311984, -0.146662, 0.9882463, -0.0016801328, -0.9891757, -0.1467265, 0.9990684, 0.004666468, -0.042899467, -0.2560604, 1.0397966, -0.0025756992)
+
+[node name="forearm_R" parent="metarig/GeneralSkeleton" index="7"]
+transform = Transform3D(-0.9882463, -0.146662, 0.043119844, 0.1467265, -0.9891757, -0.0016801127, 0.042899467, 0.0046664886, 0.9990684, -0.23486826, 1.2987331, -0.04239159)
+
+[node name="upper_arm_R" parent="metarig/GeneralSkeleton" index="8"]
+transform = Transform3D(0.058480646, -0.10575563, 0.992671, 0.14953886, -0.98222536, -0.1134524, 0.9870248, 0.15507767, -0.0416266, -0.1953, 1.5840077, -0.025344037)
+
+[node name="spine_003" parent="metarig/GeneralSkeleton" index="9"]
+transform = Transform3D(1, 0, 0, 0, 0.9999972, -0.0023596117, 0, 0.0023596117, 0.9999972, 0, 1.4650592, -0.00482465)
+
+[node name="spine_001" parent="metarig/GeneralSkeleton" index="10"]
+transform = Transform3D(1, 0, 0, 0, 0.9999972, -0.0023596117, 0, 0.0023596117, 0.9999972, 0, 1.1566868, -0.0168523)
+
+[node name="foot_L" parent="metarig/GeneralSkeleton" index="11"]
+transform = Transform3D(-1, 4.8741526e-08, -5.7533516e-09, -6.028892e-09, -0.0056549753, 0.999984, 4.870821e-08, 0.99998397, 0.0056549744, 0.098, 0.08502409, -0.0162304)
+
+[node name="shin_L" parent="metarig/GeneralSkeleton" index="12"]
+transform = Transform3D(1, 5.753352e-09, -4.8741526e-08, 6.0288925e-09, -0.999984, 0.0056549753, -4.870821e-08, -0.0056549744, -0.99998397, 0.098000005, 0.5367633, 0.031124685)
+
+[node name="thigh_L" parent="metarig/GeneralSkeleton" index="13"]
+transform = Transform3D(-1, 6.2454477e-09, 4.8680917e-08, -6.0288925e-09, -0.9999901, 0.0044471947, 4.870821e-08, 0.0044471947, 0.99999005, 0.098, 1.0713757, -0.012253568)
+
+[node name="foot_R" parent="metarig/GeneralSkeleton" index="14"]
+transform = Transform3D(-1, 3.896475e-08, 5.8949476e-09, 5.6745084e-09, -0.0056549753, 0.999984, 3.899746e-08, 0.99998397, 0.0056549744, -0.098, 0.08502409, -0.0162304)
+
+[node name="shin_R" parent="metarig/GeneralSkeleton" index="15"]
+transform = Transform3D(1, -5.8949468e-09, -3.8964753e-08, -5.6745075e-09, -0.999984, 0.0056549753, -3.8997463e-08, -0.0056549744, -0.99998397, -0.098, 0.5367633, 0.031124685)
+
+[node name="thigh_R" parent="metarig/GeneralSkeleton" index="16"]
+transform = Transform3D(-1, -5.5010223e-09, 3.9022314e-08, 5.6745075e-09, -0.9999901, 0.0044471947, 3.8997463e-08, 0.0044471947, 0.99999005, -0.098, 1.0713757, -0.012253568)
+
+[node name="spine" parent="metarig/GeneralSkeleton" index="17"]
+transform = Transform3D(1, 0, 0, 0, 0.9999972, -0.0023596117, 0, 0.0023596117, 0.9999972, 0, 1.0093768, -0.05519999)
+
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="metarig/GeneralSkeleton" index="18"]
+setting_count = 1
+settings/0/root_bone_name = "hair"
+settings/0/root_bone = 7
+settings/0/end_bone_name = "hair.001"
+settings/0/end_bone = 8
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 1.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.4
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="metarig" index="1"]
+root_node = NodePath("../..")
+libraries = {
+&"template_psx_charter": ExtResource("2_2uvth")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="metarig" index="2"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_tanhj")
+anim_player = NodePath("../AnimationPlayer")
+parameters/walk_speed/blend_position = 0.0
+parameters/estate/current_state = "floor"
+parameters/estate/transition_request = ""
+parameters/estate/current_index = 0

@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cast7w0103v47"]
+
+[ext_resource type="Texture2D" uid="uid://cpp8hjhm8jg1t" path="res://player/player_oc_player_oc_face.png" id="1_i33bb"]
+
+[resource]
+resource_name = "player_oc_face"
+transparency = 4
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_i33bb")
+texture_filter = 2
