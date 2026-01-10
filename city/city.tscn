@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckaeu56snn8lf"]
+
+[ext_resource type="PackedScene" uid="uid://d4nnvm1whdmuw" path="res://city/city.glb" id="1_2f1qc"]
+[ext_resource type="PackedScene" uid="uid://bt14sma31yo57" path="res://player/player.tscn" id="2_6r06e"]
+
+[sub_resource type="Gradient" id="Gradient_6r06e"]
+colors = PackedColorArray(0, 0, 0.81960785, 1, 0.73088616, 0.87084246, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tnll3"]
+gradient = SubResource("Gradient_6r06e")
+width = 32
+height = 32
+fill_from = Vector2(1, 0.8820225)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5agbo"]
+panorama = SubResource("GradientTexture2D_tnll3")
+filter = false
+
+[sub_resource type="Sky" id="Sky_lnb5n"]
+sky_material = SubResource("PanoramaSkyMaterial_5agbo")
+
+[sub_resource type="Environment" id="Environment_2qnss"]
+background_mode = 2
+sky = SubResource("Sky_lnb5n")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+
+[node name="city" instance=ExtResource("1_2f1qc")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_2qnss")
+
+[node name="Player" parent="." index="1" instance=ExtResource("2_6r06e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

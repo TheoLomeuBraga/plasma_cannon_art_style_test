@@ -1,29 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bt14sma31yo57"]
+[gd_scene load_steps=4 format=3 uid="uid://bt14sma31yo57"]
 
 [ext_resource type="PackedScene" uid="uid://cwr63aj5eu6of" path="res://player/player_oc_model.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bg3kw43p0r6wb" path="res://player/player.gd" id="1_rkbax"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rkbax"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_g1dw6"]
-sky_material = SubResource("ProceduralSkyMaterial_rkbax")
-
-[sub_resource type="Environment" id="Environment_yw30f"]
-background_mode = 2
-sky = SubResource("Sky_g1dw6")
-tonemap_mode = 2
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oul6g"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rkbax"]
-noise = SubResource("FastNoiseLite_oul6g")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1dw6"]
-albedo_texture = SubResource("NoiseTexture2D_rkbax")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_rkbax")
@@ -35,6 +15,7 @@ shape = SubResource("CapsuleShape3D_kqu6x")
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -1, 0)
 
 [node name="rotation_ref" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="camera_basis_y" type="Node3D" parent="."]
 top_level = true
@@ -44,22 +25,7 @@ top_level = true
 [node name="SpringArm3D" type="SpringArm3D" parent="camera_basis_y/camera_basis_x"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.19216734)
 spring_length = 2.0
+margin = 0.05
 
 [node name="Camera3D" type="Camera3D" parent="camera_basis_y/camera_basis_x/SpringArm3D"]
 fov = 90.0
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-top_level = true
-use_collision = true
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 2, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="CSGCombiner3D/DirectionalLight3D"]
-environment = SubResource("Environment_yw30f")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-size = Vector3(100, 1, 100)
-material = SubResource("StandardMaterial3D_g1dw6")

@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 
 @export_category("floor_estate")
 @export var speed : float = 10.0
-@export var friction : float = 50.0
+@export var friction : float = 100.0
 @export var rotation_speed : float = 10.0
 
 @export_category("air_estate")
