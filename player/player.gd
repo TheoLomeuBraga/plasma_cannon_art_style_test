@@ -10,6 +10,8 @@ class_name Player
 @onready var camera : Camera3D = $camera_basis_y/camera_basis_x/SpringArm3D/Camera3D
 @export var camera_sensitivity : float = 1.0
 
+
+
 func _camera_process(delta : float) -> void:
 	camera_basis_y.global_position = global_position
 	camera_basis_x.rotation.x = clamp(camera_basis_x.rotation.x,deg_to_rad(-60.0),deg_to_rad(60.0))
@@ -40,7 +42,8 @@ var estate : Estates = Estates.AIR
 
 func rotate_charter_to_direction(delta: float,direction : Vector3) -> void:
 	var new_direction : Vector3 = -Vector3(direction.x,0.0,direction.z).normalized()
-	rotation_ref.look_at(rotation_ref.global_position + new_direction)
+	if rotation_ref.global_position != rotation_ref.global_position + new_direction:
+		rotation_ref.look_at(rotation_ref.global_position + new_direction)
 	
 	player_oc_model.rotation.y = rotate_toward(player_oc_model.rotation.y,rotation_ref.rotation.y,rotation_speed * delta)
 

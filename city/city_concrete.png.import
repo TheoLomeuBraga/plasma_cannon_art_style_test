@@ -2,21 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dndjwp4bv4u5m"
-path.s3tc="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.ctex"
+uid="uid://cqpwsc8oa7d7t"
+path="res://.godot/imported/city_concrete.png-0fd800a2f6e4098f7ab9aada22bfc21b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
+}
+generator_parameters={
+"md5": "5cc5a27a437ebcd40897e3d554f2195f"
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.ctex"]
+source_file="res://city/city_concrete.png"
+dest_files=["res://.godot/imported/city_concrete.png-0fd800a2f6e4098f7ab9aada22bfc21b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

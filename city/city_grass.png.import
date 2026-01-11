@@ -2,21 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dndjwp4bv4u5m"
-path.s3tc="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.ctex"
+uid="uid://v0ic1s5sbyy8"
+path="res://.godot/imported/city_grass.png-11f1aa46cee215707ea761c2991c8d3a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
+}
+generator_parameters={
+"md5": "2e017b1aa5db7f6dd88b3a43939f9f77"
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.ctex"]
+source_file="res://city/city_grass.png"
+dest_files=["res://.godot/imported/city_grass.png-11f1aa46cee215707ea761c2991c8d3a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

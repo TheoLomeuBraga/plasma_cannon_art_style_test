@@ -2,21 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dndjwp4bv4u5m"
-path.s3tc="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.ctex"
+uid="uid://byw3dsxnly7vp"
+path="res://.godot/imported/city_side_walk_concrete.png-6d1a80c175cc9ca2fc666b4ca45f7ff0.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
+}
+generator_parameters={
+"md5": "bb937ae8092fedb0ec9a5e6b9bf4a8be"
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.ctex"]
+source_file="res://city/city_side_walk_concrete.png"
+dest_files=["res://.godot/imported/city_side_walk_concrete.png-6d1a80c175cc9ca2fc666b4ca45f7ff0.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

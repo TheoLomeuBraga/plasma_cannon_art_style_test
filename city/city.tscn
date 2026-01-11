@@ -32,4 +32,4 @@ tonemap_mode = 2
 environment = SubResource("Environment_2qnss")
 
 [node name="Player" parent="." index="1" instance=ExtResource("2_6r06e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 7)
