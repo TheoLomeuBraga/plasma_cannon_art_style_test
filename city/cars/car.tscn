@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://clpkg5oq8uf5d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bc2n"]
+
+[node name="Car" type="PathFollow3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_1bc2n")
+skeleton = NodePath("")
