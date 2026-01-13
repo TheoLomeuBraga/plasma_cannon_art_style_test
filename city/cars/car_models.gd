@@ -2,13 +2,15 @@
 extends Node3D
 class_name CarModel
 
-@export_range(1,3,1) var selected_car : int
+@export_range(0,2,1) var selected_car : int
 
 func apply() -> void:
 	for c in get_children():
 		c.visible = false
 	
-	get_child((selected_car - 1) % get_child_count()).visible = true
+	selected_car = selected_car % (get_child_count() - 2)
+	
+	get_child(selected_car).visible = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

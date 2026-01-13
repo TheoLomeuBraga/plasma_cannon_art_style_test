@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://clpkg5oq8uf5d"]
+[gd_scene load_steps=7 format=3 uid="uid://clpkg5oq8uf5d"]
 
 [ext_resource type="PackedScene" uid="uid://dnw66sxnyuj7w" path="res://city/cars/car_models.tscn" id="1_ca1mm"]
 [ext_resource type="Script" uid="uid://bqdl2dyjl10ip" path="res://city/cars/car.gd" id="1_nxwdr"]
+[ext_resource type="AudioStream" uid="uid://l0ggn56suy5j" path="res://sfx/engine-loop.wav" id="2_2cc15"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nxwdr"]
 size = Vector3(2, 1.217, 1.3262222)
@@ -15,8 +16,15 @@ size = Vector3(1.885, 2, 2)
 [node name="Car" type="PathFollow3D"]
 script = ExtResource("1_nxwdr")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_2cc15")
+volume_db = 5.0
+unit_size = 5.0
+autoplay = true
+doppler_tracking = 1
+
 [node name="cars" parent="." instance=ExtResource("1_ca1mm")]
-selected_car = 2
+selected_car = 3
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="cars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

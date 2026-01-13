@@ -17,7 +17,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	for i in shape_cast.get_collision_count():
-		print(shape_cast.get_collider(i) is CharacterBody3D)
 		if shape_cast.get_collider(i) is CharacterBody3D:
 			return
 	

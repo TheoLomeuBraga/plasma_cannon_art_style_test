@@ -10,7 +10,8 @@ class_name Player
 @onready var camera : Camera3D = $camera_basis_y/camera_basis_x/SpringArm3D/Camera3D
 @export var camera_sensitivity : float = 1.0
 
-
+@onready var sfx_steps : AudioStreamPlayer3D = $sfx/steps
+@onready var sfx_jump : AudioStreamPlayer3D = $sfx/jump
 
 func _camera_process(delta : float) -> void:
 	camera_basis_y.global_position = global_position
@@ -40,6 +41,9 @@ func _input(event: InputEvent) -> void:
 enum Estates {AIR,FLOOR}
 var estate : Estates = Estates.AIR
 
+func _ready() -> void:
+	sfx_steps.play()
+
 func rotate_charter_to_direction(delta: float,direction : Vector3) -> void:
 	var new_direction : Vector3 = -Vector3(direction.x,0.0,direction.z).normalized()
 	if rotation_ref.global_position != rotation_ref.global_position + new_direction:
@@ -59,8 +63,14 @@ func _floor_process(delta: float) -> void:
 	
 	player_oc_model.walk_speed = move_toward(player_oc_model.walk_speed,input_dir.length()* 2.0,delta * 5.0) 
 	
+	
+	
+	sfx_steps.volume_db = linear_to_db(input_dir.length()*0.12)
+	
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
+		sfx_jump.play()
 	
 	rotate_charter_to_direction(delta,direction)
 	
@@ -68,6 +78,8 @@ func _floor_process(delta: float) -> void:
 		estate = Estates.AIR
 
 func _air_process(delta: float) -> void:
+	
+	sfx_steps.volume_db = linear_to_db(0.0)
 	
 	player_oc_model.mode = player_oc_model.Modes.AIR
 	
