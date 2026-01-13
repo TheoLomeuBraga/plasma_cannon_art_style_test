@@ -3,23 +3,22 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqsxhec8afke0"
-path.s3tc="res://.godot/imported/cars_cars.png-35c80f13153432c3727517000d2734e3.s3tc.ctex"
+path="res://.godot/imported/cars_cars.png-35c80f13153432c3727517000d2734e3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
-"md5": "a1fc8a8cbe699d5ae247c915dcb6c23f"
+"md5": "a56782f3ebc350bd88c45c07c75c755f"
 }
 
 [deps]
 
 source_file="res://city/cars/cars_cars.png"
-dest_files=["res://.godot/imported/cars_cars.png-35c80f13153432c3727517000d2734e3.s3tc.ctex"]
+dest_files=["res://.godot/imported/cars_cars.png-35c80f13153432c3727517000d2734e3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

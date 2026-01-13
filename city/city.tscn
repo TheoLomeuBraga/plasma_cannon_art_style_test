@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://ckaeu56snn8lf"]
+[gd_scene load_steps=20 format=3 uid="uid://ckaeu56snn8lf"]
 
 [ext_resource type="PackedScene" uid="uid://d4nnvm1whdmuw" path="res://city/city.glb" id="1_2f1qc"]
-[ext_resource type="Script" uid="uid://e3858lotdrxv" path="res://city/car_behave.gd" id="2_5agbo"]
+[ext_resource type="PackedScene" uid="uid://clpkg5oq8uf5d" path="res://city/cars/car.tscn" id="2_5agbo"]
 [ext_resource type="PackedScene" uid="uid://bt14sma31yo57" path="res://player/player.tscn" id="2_6r06e"]
 [ext_resource type="ArrayOccluder3D" uid="uid://qwd5jbysajxf" path="res://city/city.occ" id="2_tnll3"]
 
@@ -12,12 +12,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 12
-
-[sub_resource type="BoxMesh" id="BoxMesh_5agbo"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5agbo"]
-size = Vector3(2, 2, 2)
 
 [sub_resource type="Gradient" id="Gradient_6r06e"]
 colors = PackedColorArray(0, 0, 0.81960785, 1, 0.73088616, 0.87084246, 1, 1)
@@ -94,140 +88,93 @@ color = Color(0.3529412, 1, 0.16078432, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000002, 0)
 curve = SubResource("Curve3D_tnll3")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="car_route_1" index="0"]
-transform = Transform3D(0.60874397, -3.419351e-08, -0.7933338, -3.893066e-08, 0.99999636, -7.297166e-08, 0.7933313, 7.5309785e-08, 0.6087459, -51.86416, -2.3841858e-07, -52.823368)
-progress = 421.16208
-script = ExtResource("2_5agbo")
-speed = 20.0
+[node name="Car" parent="car_route_1" index="0" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.60875946, -5.789377e-08, -0.79335153, 0, 1, -7.2973286e-08, 0.79335153, 4.4423413e-08, 0.60875946, -51.864147, -2.3841858e-07, -52.823357)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D/MeshInstance3D" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
-
-[node name="PathFollow3D2" type="PathFollow3D" parent="car_route_1" index="1"]
-transform = Transform3D(0.012472709, 3.582915e-10, -0.9998878, -2.8724337e-08, 0.99999684, 2.7754621e-17, 0.99989104, 2.8722907e-08, 0.012472668, -2.0730016, 0, -54.299328)
+[node name="Car2" parent="car_route_1" index="1" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.0124730645, 3.5829265e-10, -0.9999196, -2.8725157e-08, 1, 2.7755503e-17, 0.9999196, 2.8722997e-08, 0.0124730645, -2.0730016, 0, -54.299328)
 progress = 50.0
-script = ExtResource("2_5agbo")
-speed = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D2/MeshInstance3D" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D2/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
-
-[node name="PathFollow3D3" type="PathFollow3D" parent="car_route_1" index="2"]
-transform = Transform3D(-0.26789778, 1.5548874e-08, -0.963414, -2.4004429e-08, 0.9999971, 2.2813287e-08, 0.96341497, 2.9239597e-08, -0.26789752, 47.86739, -8.6264976e-08, -54.445885)
+[node name="Car3" parent="car_route_1" index="2" instance=ExtResource("2_5agbo")]
+transform = Transform3D(-0.2679054, 1.554892e-08, -0.9634425, -2.4005114e-08, 1, 2.281396e-08, 0.9634425, 2.9239683e-08, -0.2679054, 47.86739, -8.6264976e-08, -54.445885)
 progress = 100.0
-script = ExtResource("2_5agbo")
-speed = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D3" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D3/MeshInstance3D" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D3/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
-
-[node name="PathFollow3D4" type="PathFollow3D" parent="car_route_1" index="3"]
-transform = Transform3D(-0.999991, 1.5314857e-09, -0.0022393658, 1.524752e-09, 0.99999636, 3.0067069e-09, 0.0022393619, 3.003288e-09, -0.9999928, 53.292233, -9.865849e-08, -6.9759483)
+[node name="Car4" parent="car_route_1" index="3" instance=ExtResource("2_5agbo")]
+transform = Transform3D(-0.9999949, 1.5314913e-09, -0.0022393705, 1.5247579e-09, 1, 3.006713e-09, 0.0022393705, 3.003299e-09, -0.9999949, 53.292233, -9.865849e-08, -6.9759483)
 progress = 150.0
-script = ExtResource("2_5agbo")
-speed = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D4" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D4/MeshInstance3D" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D4/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
-
-[node name="PathFollow3D5" type="PathFollow3D" parent="car_route_1" index="4"]
-transform = Transform3D(-0.9961334, 1.3195562e-09, -0.08774824, 1.3246582e-09, 0.9999966, 3.4694178e-18, 0.08774811, -1.1623802e-10, -0.99613476, 53.78982, -2.3841858e-07, 43.001156)
+[node name="Car5" parent="car_route_1" index="4" instance=ExtResource("2_5agbo")]
+transform = Transform3D(-0.99614, 1.3195607e-09, -0.0877487, 1.324667e-09, 1, 3.4694362e-18, 0.0877487, -1.16238415e-10, -0.99614, 53.78982, -2.3841858e-07, 43.001156)
 progress = 200.0
-script = ExtResource("2_5agbo")
-speed = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D5" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D5/MeshInstance3D" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D5/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
-
-[node name="PathFollow3D6" type="PathFollow3D" parent="car_route_1" index="5"]
-transform = Transform3D(0.0030134374, -3.0670673e-09, 0.9999951, -9.114582e-09, 0.9999967, 3.0945564e-09, -0.99999344, -9.123855e-09, 0.0030134423, 12.914144, -8.119635e-08, 54.262466)
+[node name="Car6" parent="car_route_1" index="5" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.0030134355, -3.0670773e-09, 0.99999285, -9.114577e-09, 1, 3.0945493e-09, -0.99999285, -9.123885e-09, 0.0030134355, 12.914144, -8.119635e-08, 54.262466)
 progress = 250.0
-script = ExtResource("2_5agbo")
-speed = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D6" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D6/MeshInstance3D" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D6/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
-
-[node name="PathFollow3D7" type="PathFollow3D" parent="car_route_1" index="6"]
-transform = Transform3D(0.0030134364, -3.0670664e-09, 0.9999951, -9.114578e-09, 0.9999966, 3.094556e-09, -0.99999315, -9.123853e-09, 0.0030134423, -37.079678, -2.3590576e-07, 54.111816)
+[node name="Car7" parent="car_route_1" index="6" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.0030134355, -3.0670768e-09, 0.99999285, -9.114576e-09, 1, 3.0945488e-09, -0.99999285, -9.123884e-09, 0.0030134355, -37.079678, -2.3590576e-07, 54.111816)
 progress = 300.0
-script = ExtResource("2_5agbo")
-speed = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D7" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D7/MeshInstance3D" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D7/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
-
-[node name="PathFollow3D8" type="PathFollow3D" parent="car_route_1" index="7"]
-transform = Transform3D(0.9999687, 1.276519e-08, -0.0045686355, -1.2758189e-08, 0.9999953, 1.5163117e-09, 0.004568634, -1.4580304e-09, 0.999969, -54.322895, -1.4948559e-07, 17.874727)
+[node name="Car8" parent="car_route_1" index="7" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.99998695, 1.276525e-08, -0.0045687174, -1.2758422e-08, 1, 1.5163389e-09, 0.0045687174, -1.4580372e-09, 0.99998695, -54.322895, -1.4948559e-07, 17.874727)
 progress = 350.0
-script = ExtResource("2_5agbo")
-speed = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D8" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D8/MeshInstance3D" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D8/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
-
-[node name="PathFollow3D9" type="PathFollow3D" parent="car_route_1" index="8"]
-transform = Transform3D(0.99996555, 1.2765169e-08, -0.0045686373, -1.275815e-08, 0.9999936, 1.5163125e-09, 0.004568619, -1.4580279e-09, 0.9999695, -54.094456, -2.2530347e-07, -32.125233)
+[node name="Car9" parent="car_route_1" index="8" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.99998695, 1.2765251e-08, -0.004568717, -1.2758423e-08, 1, 1.5163389e-09, 0.004568717, -1.4580372e-09, 0.99998695, -54.094456, -2.2530347e-07, -32.125233)
 progress = 400.0
-script = ExtResource("2_5agbo")
-speed = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="car_route_1/PathFollow3D9" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9838412, 0)
-mesh = SubResource("BoxMesh_5agbo")
+[node name="Car10" parent="car_route_1" index="9" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.6087587, -5.789377e-08, -0.7933505, 0, 1, -7.2973194e-08, 0.7933505, 4.4423413e-08, 0.6087587, -57.95176, -2.3841858e-07, -60.756893)
+h_offset = -10.0
+speed = -20.0
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="car_route_1/PathFollow3D9/MeshInstance3D" index="0"]
+[node name="Car11" parent="car_route_1" index="10" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.012473048, 3.5829265e-10, -0.9999183, -2.8725118e-08, 1, 2.7755466e-17, 0.9999183, 2.8722997e-08, 0.012473048, -2.1977327, 2.872523e-07, -64.29855)
+progress = 50.0
+h_offset = -10.0
+speed = -20.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="car_route_1/PathFollow3D9/MeshInstance3D/CharacterBody3D" index="0"]
-shape = SubResource("BoxShape3D_5agbo")
+[node name="Car12" parent="car_route_1" index="11" instance=ExtResource("2_5agbo")]
+transform = Transform3D(-0.26790503, 1.554892e-08, -0.9634411, -2.4005077e-08, 1, 2.2813927e-08, 0.9634411, 2.9239683e-08, -0.26790503, 50.54645, 1.537868e-07, -64.08034)
+progress = 100.0
+h_offset = -10.0
+speed = -20.0
+
+[node name="Car13" parent="car_route_1" index="12" instance=ExtResource("2_5agbo")]
+transform = Transform3D(-0.99999344, 1.5314913e-09, -0.0022393672, 1.5247557e-09, 1, 3.0067089e-09, 0.0022393672, 3.003299e-09, -0.99999344, 63.292206, -1.1390611e-07, -6.998342)
+progress = 150.0
+h_offset = -10.0
+speed = -20.0
+
+[node name="Car14" parent="car_route_1" index="13" instance=ExtResource("2_5agbo")]
+transform = Transform3D(-0.9961381, 1.3195607e-09, -0.087748535, 1.3246645e-09, 1, 3.4694296e-18, 0.087748535, -1.16238415e-10, -0.9961381, 63.751247, -2.5166528e-07, 42.123665)
+progress = 200.0
+h_offset = -10.0
+speed = -20.0
+
+[node name="Car15" parent="car_route_1" index="14" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.0030134309, -3.0670773e-09, 0.9999913, -9.114562e-09, 1, 3.0945446e-09, -0.9999913, -9.123885e-09, 0.0030134309, 12.884009, 9.949659e-09, 64.26242)
+progress = 250.0
+h_offset = -10.0
+speed = -20.0
+
+[node name="Car16" parent="car_route_1" index="15" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.0030134309, -3.0670768e-09, 0.9999913, -9.1145615e-09, 1, 3.0945442e-09, -0.9999913, -9.123884e-09, 0.0030134309, -37.109814, -1.4475975e-07, 64.11177)
+progress = 300.0
+h_offset = -10.0
+speed = -20.0
+
+[node name="Car17" parent="car_route_1" index="16" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.9999854, 1.276525e-08, -0.0045687105, -1.2758402e-08, 1, 1.5163366e-09, 0.0045687105, -1.4580372e-09, 0.9999854, -64.32279, -2.190103e-08, 17.82904)
+progress = 350.0
+h_offset = -10.0
+speed = -20.0
+
+[node name="Car18" parent="car_route_1" index="17" instance=ExtResource("2_5agbo")]
+transform = Transform3D(0.9999854, 1.2765251e-08, -0.00456871, -1.2758403e-08, 1, 1.5163366e-09, 0.00456871, -1.4580372e-09, 0.9999854, -64.09435, -9.7718896e-08, -32.17092)
+progress = 400.0
+h_offset = -10.0
+speed = -20.0
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="." index="1"]
 occluder = ExtResource("2_tnll3")

@@ -1,9 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://clpkg5oq8uf5d"]
+[gd_scene load_steps=5 format=3 uid="uid://clpkg5oq8uf5d"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_1bc2n"]
+[ext_resource type="PackedScene" uid="uid://dnw66sxnyuj7w" path="res://city/cars/car_models.tscn" id="1_ca1mm"]
+[ext_resource type="Script" uid="uid://bqdl2dyjl10ip" path="res://city/cars/car.gd" id="1_nxwdr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nxwdr"]
+size = Vector3(2, 1.217, 1.3262222)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cc15"]
+size = Vector3(2, 2.232, 2.141)
 
 [node name="Car" type="PathFollow3D"]
+script = ExtResource("1_nxwdr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_1bc2n")
-skeleton = NodePath("")
+[node name="cars" parent="." instance=ExtResource("1_ca1mm")]
+selected_car = 2
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38745117, 1.3189479)
+shape = SubResource("BoxShape3D_nxwdr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11999512, -0.42025924)
+shape = SubResource("BoxShape3D_2cc15")

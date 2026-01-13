@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://sr3nrmg6o0eu"]
+
+[ext_resource type="Texture2D" uid="uid://bqsxhec8afke0" path="res://city/cars/cars_cars.png" id="1_83iqg"]
+
+[resource]
+resource_name = "cars"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_83iqg")
+texture_filter = 2
