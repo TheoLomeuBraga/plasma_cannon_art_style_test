@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
+static var current : Player
+
 @onready var player_oc_model : PlayerOCModel =  $player_oc_model
 @onready var rotation_ref : Node3D = $rotation_ref
 
@@ -12,6 +14,7 @@ class_name Player
 
 @onready var sfx_steps : AudioStreamPlayer3D = $sfx/steps
 @onready var sfx_jump : AudioStreamPlayer3D = $sfx/jump
+@onready var spring_arm_camera : SpringArm3D = $camera_basis_y/camera_basis_x/SpringArm3D
 
 func _camera_process(delta : float) -> void:
 	camera_basis_y.global_position = global_position
@@ -43,6 +46,10 @@ var estate : Estates = Estates.AIR
 
 func _ready() -> void:
 	sfx_steps.play()
+	current = self
+	camera_basis_y.global_position = global_position
+	camera_basis_y.global_rotation = global_rotation
+	spring_arm_camera.add_excluded_object(self)
 
 func rotate_charter_to_direction(delta: float,direction : Vector3) -> void:
 	var new_direction : Vector3 = -Vector3(direction.x,0.0,direction.z).normalized()
@@ -105,3 +112,6 @@ func _physics_process(delta: float) -> void:
 		Estates.FLOOR:
 			_floor_process(delta)
 	move_and_slide()
+
+func _exit_tree() -> void:
+	current = null

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Plasma Cannon Art Style Test"
+run/main_scene="uid://ckaeu56snn8lf"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://dndjwp4bv4u5m"
 
