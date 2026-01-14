@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnid8cy070lav"
 path.s3tc="res://.godot/imported/city_asphalt.png-ccfe9f9ea99189b11fde2cef2d310100.s3tc.ctex"
+path.etc2="res://.godot/imported/city_asphalt.png-ccfe9f9ea99189b11fde2cef2d310100.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://city/city_asphalt.png"
-dest_files=["res://.godot/imported/city_asphalt.png-ccfe9f9ea99189b11fde2cef2d310100.s3tc.ctex"]
+dest_files=["res://.godot/imported/city_asphalt.png-ccfe9f9ea99189b11fde2cef2d310100.s3tc.ctex", "res://.godot/imported/city_asphalt.png-ccfe9f9ea99189b11fde2cef2d310100.etc2.ctex"]
 
 [params]
 
